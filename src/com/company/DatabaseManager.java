@@ -111,6 +111,41 @@ public class DatabaseManager {
         }
     }
 
+    // Creates the Categories table in the database
+    public void buildCategories(){
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS Categories (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "category text NOT NULL,\n"
+                + "percentage real, \n"
+                + "value real, \n"
+                + "	capacity real\n"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Inserts three values into the Categories table
+    public void insertCategories(String name, Double percentage, Double value ){
+        String sql = "INSERT INTO Categories (category,percentage, value) VALUES(?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setDouble(2, percentage);
+            pstmt.setDouble(3, value);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     // Inserts one value into desired table
     public void insert(String tableName, String colOneName, String name,
                        String colTwoName, String value2 ) {
