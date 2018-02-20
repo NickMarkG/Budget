@@ -13,6 +13,7 @@ public class Main {
         //"weighted_percent", "text");
         db.buildCategories();
         db.insertCategories("Savings", 0.50, 0.0);
+        db.selectCategories();
 
     }
 

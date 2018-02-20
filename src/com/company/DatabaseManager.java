@@ -146,6 +146,61 @@ public class DatabaseManager {
         }
     }
 
+    public void deleteCategory(String name){
+
+    }
+
+    public void updateCategory(){
+
+    }
+
+    public void selectCategories(){
+        String sql = "SELECT id, category, percentage, value FROM Categories";
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") +  "\t" +
+                        rs.getString("category") + "\t" +
+                        rs.getDouble("percentage") + "\t" +
+                        rs.getDouble("value"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*
+    public void selectTable(String tableName){
+        String sql = "SELECT * FROM " + tableName;
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            // loop through the result set
+            while (rs.next()) {
+                int i = 0;
+                while() {
+                    System.out.println(rs.getObject(i));
+                    //System.out.println(rs.getInt("id") +  "\t" +
+                    //        rs.getString("name") + "\t" +
+                    //        rs.getDouble("capacity"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    */
+
+    public void selectTable(String tableName, String conditionOne, String conditionTwo ){
+
+    }
+
     // Inserts one value into desired table
     public void insert(String tableName, String colOneName, String name,
                        String colTwoName, String value2 ) {
