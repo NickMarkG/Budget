@@ -11,8 +11,9 @@ public class Main {
         DatabaseManager db = new DatabaseManager("test.db");
         //db.createNewTable("Categories", "Category", "text",
         //"weighted_percent", "text");
-        db.buildCategories();
-        db.insertCategories("Savings", 0.50, 0.0);
+        //db.buildCategories();
+        //db.insertCategories("Savings", 0.50, 0.0);
+        db.updateCategory("Savings", 0.0, 5.0);
         db.selectCategories();
 
     }

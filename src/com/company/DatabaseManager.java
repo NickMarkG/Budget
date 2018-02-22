@@ -150,8 +150,44 @@ public class DatabaseManager {
 
     }
 
-    public void updateCategory(){
+    public void updateCategory(int id, String category, double percentage, double value){
+            String sql = "UPDATE Categories SET category = ? , "
+                    + "percentage = ? ,"
+                    + "value = ?"
+                    + "WHERE id = ?";
 
+            try (Connection conn = this.connect();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                // set the corresponding param
+                pstmt.setString(1, category);
+                pstmt.setDouble(2, percentage);
+                pstmt.setDouble(3, value);
+                pstmt.setInt(4, id);
+                // update
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+    }
+
+    public void updateCategory(String category, double percentage, double value){
+        String sql = "UPDATE Categories SET percentage = ? , "
+                + "value = ? "
+                + "WHERE category = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setDouble(1, percentage);
+            pstmt.setDouble(2, value);
+            pstmt.setString(3, category);
+            // update
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void selectCategories(){
