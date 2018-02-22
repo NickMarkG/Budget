@@ -146,8 +146,36 @@ public class DatabaseManager {
         }
     }
 
-    public void deleteCategory(String name){
+    public void deleteCategory(String category){
+        String sql = "DELETE FROM Categories WHERE category = ?";
 
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, category);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteCategory(int id){
+        String sql = "DELETE FROM Categories WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, id);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void updateCategory(int id, double percentage, double value){

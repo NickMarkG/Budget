@@ -15,6 +15,7 @@ public class Main {
         //db.insertCategories("Savings", 0.50, 0.0);
         db.updateCategory("Savings", 0.0, 5.0);
         db.updateCategory(1, 0.3, 0.50);
+        db.deleteCategory( "Savings" );
         db.selectCategories();
 
     }
